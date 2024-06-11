@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Pessoa {
+            #nome;
+            #idade;
+            #email;
+            
+            constructor(nome, idade, email) {
+                this.#nome = nome;
+                this.#idade = idade;
+                this.#email = email;
+            }
+            
+            getEmail() {
+                return this.#email;
+            }
+
+            setEmail(email) {
+                if (this.#isValidEmail(email)) {
+                    this.#email = email;
+                    console.log("Email válido.");
+                    return this.#email;
+                }
+                console.log("Email inválido.");
+                throw new Error("Email inválido. Tente novamente.");
+            }
+
+            getIdade() {
+                return this.#idade;
+            }
+
+            setIdade(idade) {
+                if (idade > 0) {
+                    this.#idade = idade;
+                    console.log("Idade válida.");
+                    return this.#idade;
+                }
+                console.log("Idade inválida.");
+                throw new Error("Idade inválida. Tente novamente.");
+            }
+
+            getNome() {
+                return this.#nome;
+            }
+
+            setNome(nome) {
+                if (this.#isValidNome(nome)) {
+                    this.#nome = nome;
+                    console.log("Nome válido.");
+                    return this.#nome;
+                }
+                console.log("Nome inválido.");
+                throw new Error("Nome inválido. Tente novamente.");
+            }
+
+            #isValidEmail(email) {
+                return email.includes("@") && email.includes(".");
+            }
+
+            #isValidNome(nome) {
+                return !/\d/.test(nome);
+            }
+        }
+
+        const pessoa1 = new Pessoa("Nathan", 25, "nathangrima.m1@gmail.com");
+        const pessoa2 = new Pessoa("Bruno", 19, "bruno@gmail.com")
+
+        console.log(pessoa1.getEmail());
+        console.log(pessoa1.getNome());
+        console.log(pessoa1.getIdade());
+        try {
+            console.log(pessoa1.setEmail("ijjfskd@gmail.com"));
+        } catch (error) {
+            console.error(error.message);
+        }
+
+        console.log(pessoa2.getNome());
+        console.log(pessoa2.getEmail());
+        try {
+            console.log(pessoa2.setIdade(19));
+        } catch (error) {
+            console.error(error.message);
+        }
+        try {
+            console.log(pessoa2.setEmail("brunogmail.com"));
+        } catch (error) {
+            console.error(error.message);
+        }
+    </script>
+</body>
+</html>
